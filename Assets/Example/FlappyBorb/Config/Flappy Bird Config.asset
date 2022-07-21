@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964c9dd1e7024d46ab05389e5156cf83, type: 3}
+  m_Name: Flappy Bird Config
+  m_EditorClassIdentifier: 
+  _birdParams:
+    _tapPower: 5
+    _forceMode: 2
+  _inputHandlerParams:
+    minSwipeDelta: 90
+  _tubeGeneratorParams:
+    _minDelay: 2
+    _maxDelay: 4
+    _minSpawnOffset: -5
+    _maxSpawnOffset: 5
+    _tubePrefab: {fileID: -6112174460110113105, guid: 37db0461370a14ec9a72f478fbe810b6, type: 3}
+    _disposeDelay: 10
+  _tubeParams:
+    _speed: {x: -3, y: 0, z: 0}
