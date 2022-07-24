@@ -1,11 +1,12 @@
 using System;
 using AlexKo.Framework.Entities;
 using AlexKo.Framework.Nodes;
+using AlexKo.Framework.ObjectPooling;
 using UnityEngine;
 
 namespace Example.FlappyBorb.Scripts.Tubes
 {
-    public class Tube : NodeBehaviour<Tube.Context>
+    public class Tube : NodeBehaviour<Tube.Context>, IPoolCacheable
     {
         [Serializable]
         public class Params
@@ -29,6 +30,16 @@ namespace Example.FlappyBorb.Scripts.Tubes
         protected override void OnDispose()
         {
             Destroy(gameObject);
+        }
+
+        public void OnGetFromPool()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void OnReturnToCachedInPool()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

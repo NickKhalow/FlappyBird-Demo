@@ -2,7 +2,6 @@ using System;
 using AlexKo.Framework.Entities;
 using AlexKo.Framework.Nodes;
 using AlexKo.Framework.ReactiveTriggers;
-using AlexKo.UI.InputPanels;
 using UniRx;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace Example.FlappyBorb.Scripts.Gameplay
 {
     public class Bird : NodeBehaviour<Bird.Context>
     {
+        [SerializeField] private Collider _collider;
         [SerializeField] private Rigidbody _rigidbody;
 
         private IDisposable _disposableForInput;
@@ -19,6 +19,8 @@ namespace Example.FlappyBorb.Scripts.Gameplay
         {
             public float _tapPower = 10;
             public ForceMode _forceMode = ForceMode.VelocityChange;
+
+            [Space] public BoolReactiveProperty _godMode;
         }
 
         public record Context(
@@ -30,6 +32,7 @@ namespace Example.FlappyBorb.Scripts.Gameplay
         protected override void ApplyContext(Context context)
         {
             _disposableForInput = context.OnPointerDown.SubscribeWithSkipFirst(ApplyUpForce).AddTo(this);
+            context.Params._godMode.Subscribe(value => _collider.enabled = !value).AddTo(this);
         }
 
         public void BlockInput()
